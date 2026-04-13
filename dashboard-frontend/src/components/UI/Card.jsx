@@ -2,17 +2,16 @@ import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-// Custom styled components for Material Design look
 const StyledCard = styled(Card)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[3], // Elevation for Material Design
+  boxShadow: theme.shadows[3], 
   backgroundColor: theme.palette.background.paper,
   transition: "box-shadow 0.3s ease-in-out",
   "&:hover": {
-    boxShadow: theme.shadows[6], // Slightly higher elevation on hover
+    boxShadow: theme.shadows[6], 
   },
 }));
 

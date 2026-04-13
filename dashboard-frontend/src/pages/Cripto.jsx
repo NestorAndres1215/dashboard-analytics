@@ -4,6 +4,14 @@ import Card from "../components/UI/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCoins } from "@fortawesome/free-solid-svg-icons";
 
+import Title from "../components/common/Title";
+
+
+import {
+  Box,
+
+} from "@mui/material";
+
 export default function Cripto() {
   const [monedaInput, setMonedaInput] = useState(""); // input del usuario
   const [vsInput, setVsInput] = useState(""); // moneda de referencia input
@@ -38,10 +46,8 @@ export default function Cripto() {
   };
 
   return (
-    <div>
-      <h1>
-        <FontAwesomeIcon icon={faCoins} /> Criptomonedas
-      </h1>
+    <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+      <Title title="Criptomonedas" icon={faCoins} />
 
       {/* Inputs de búsqueda */}
       <div style={{ display: "flex", gap: "10px", margin: "10px 0", flexWrap: "wrap" }}>
@@ -97,6 +103,6 @@ export default function Cripto() {
           ))}
         </div>
       )}
-    </div>
+    </Box>
   );
 }

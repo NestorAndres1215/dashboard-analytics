@@ -17,7 +17,7 @@ import {
   faMagnifyingGlass,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-
+import Title from "../components/common/Title";
 export default function Clima() {
   const [ciudad, setCiudad] = useState("Lima");
   const [data, setData] = useState(null);
@@ -51,25 +51,9 @@ export default function Clima() {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        mt: 4,
-        px: 2,
-      }}
-    >
-      {/* ====== TÍTULO ====== */}
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-      >
-        <FontAwesomeIcon icon={faCloudSun} color="#1976d2" />
-        Clima Actual
-      </Typography>
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+
+      <Title title="Clima Actual" icon={faCloudSun} />
 
       {/* ====== FORMULARIO DE BÚSQUEDA ====== */}
       <Box

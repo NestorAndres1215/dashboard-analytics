@@ -1,4 +1,3 @@
-import React from "react";
 import AppRoutes from "./routes/AppRoutes";
 import Header from "./components/Layout/header/Header";
 import Sidebar from "./components/Layout/sidebar/Sidebar";

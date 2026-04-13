@@ -4,16 +4,22 @@ import Card from "../components/UI/Card";
 import Pagination from "../components/UI/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
+import Title from "../components/common/Title";
 
+
+import {
+  Box,
+
+} from "@mui/material";
 export default function Exchange() {
-    const [baseInput, setBaseInput] = useState(""); // input del usuario
-    const [base, setBase] = useState(""); // moneda base actual
+    const [baseInput, setBaseInput] = useState("");
+    const [base, setBase] = useState("");
     const [rates, setRates] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 32;
 
     useEffect(() => {
-        if (!base) return; // no llamar API si no hay moneda
+        if (!base) return;
         const fetchExchange = async () => {
             try {
                 const res = await getExchange(base);
@@ -41,10 +47,8 @@ export default function Exchange() {
     const totalPages = Math.ceil(ratesArray.length / itemsPerPage);
 
     return (
-        <div>
-            <h1>
-                <FontAwesomeIcon icon={faDollarSign} /> Tipo de cambio
-            </h1>
+      <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+            <Title title="Clima Actual" icon={faDollarSign} />
 
             <div style={{ display: "flex", gap: "10px", margin: "10px 0" }}>
                 <input
@@ -76,22 +80,22 @@ export default function Exchange() {
 
             {rates && (
                 <>
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-    gap: "10px",
-  }}
->
-  {currentRates.map(([currency, value]) => (
-    <Card
-      key={currency}
-      title={currency}
-      value={value}
-      icon={<FontAwesomeIcon icon={faDollarSign} />}
-    />
-  ))}
-</div>
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                            gap: "10px",
+                        }}
+                    >
+                        {currentRates.map(([currency, value]) => (
+                            <Card
+                                key={currency}
+                                title={currency}
+                                value={value}
+                                icon={<FontAwesomeIcon icon={faDollarSign} />}
+                            />
+                        ))}
+                    </div>
 
 
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
@@ -105,6 +109,6 @@ export default function Exchange() {
 
                 </>
             )}
-        </div>
+        </Box>
     );
 }

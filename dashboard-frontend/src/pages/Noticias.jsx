@@ -15,10 +15,9 @@ import {
   InputLabel,
   CircularProgress,
 } from "@mui/material";
+import Title from "../components/common/Title";
 
-// Font Awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNewspaper } from "@fortawesome/free-solid-svg-icons"; // 📰 ícono
+import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 
 const categoriaLabels = {
   general: "General",
@@ -52,28 +51,13 @@ export default function Noticias() {
 
   return (
     <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
-      {/* ======= TÍTULO CON ICONO ======= */}
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        align="center"
-        sx={{
-          mb: 4,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 1.5,
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faNewspaper}
-          style={{ color: "#1976d2", fontSize: "1.8rem" }}
-        />
-        Noticias - {categoriaLabels[categoria] || categoria}
-      </Typography>
 
-      {/* ======= SELECT DE CATEGORÍAS ======= */}
+      <Title
+        title={`Noticias - ${categoriaLabels[categoria] || categoria}`}
+        icon={faNewspaper}
+      />
+
+
       <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
         <FormControl sx={{ minWidth: 200 }}>
           <InputLabel>Categoría</InputLabel>

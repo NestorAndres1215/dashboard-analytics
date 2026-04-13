@@ -11,10 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faCloudSun,
-  faCoins,
+  faCoins, faTachometerAlt,
   faNewspaper,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
+import Title from "../components/common/Title";
 
 const stats = [
   {
@@ -52,16 +53,8 @@ const stats = [
 const Dashboard = () => {
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
-      {/* ===== Título del dashboard ===== */}
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-      >
-        <FontAwesomeIcon icon={faUser} color="#1976d2" />
-        Panel de Control
-      </Typography>
+
+      <Title title="Panel de Control" icon={faTachometerAlt} />
 
       <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 4 }}>
         Bienvenido al panel principal. Aquí puedes ver un resumen general del
