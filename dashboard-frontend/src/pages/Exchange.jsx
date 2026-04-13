@@ -8,9 +8,10 @@ import Title from "../components/common/Title";
 
 
 import {
-  Box,
+    Box,
 
 } from "@mui/material";
+import SearchInput from "../components/common/SearchInput";
 export default function Exchange() {
     const [baseInput, setBaseInput] = useState("");
     const [base, setBase] = useState("");
@@ -47,36 +48,17 @@ export default function Exchange() {
     const totalPages = Math.ceil(ratesArray.length / itemsPerPage);
 
     return (
-      <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+        <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
             <Title title="Clima Actual" icon={faDollarSign} />
 
-            <div style={{ display: "flex", gap: "10px", margin: "10px 0" }}>
-                <input
+            <Box sx={{ my: 2 }}>
+                <SearchInput
+                    label="Moneda base (USD, EUR, PEN)"
                     value={baseInput}
-                    onChange={(e) => setBaseInput(e.target.value)}
-                    placeholder="Ej: USD"
-                    style={{
-                        padding: "8px 12px",
-                        borderRadius: "5px",
-                        border: "1px solid #ccc",
-                        flex: 1,
-                    }}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    onChange={setBaseInput}
+                    onSearch={handleSearch}
                 />
-                <button
-                    onClick={handleSearch}
-                    style={{
-                        padding: "8px 12px",
-                        borderRadius: "5px",
-                        border: "none",
-                        backgroundColor: "#3aafa9",
-                        color: "#fff",
-                        cursor: "pointer",
-                    }}
-                >
-                    <FontAwesomeIcon icon={faSearch} /> Buscar
-                </button>
-            </div>
+            </Box>
 
             {rates && (
                 <>

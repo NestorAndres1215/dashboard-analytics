@@ -7,7 +7,6 @@ import {
   ListItemIcon,
   ListItemText,
   IconButton,
-  Divider,
   Box,
   Typography,
 } from "@mui/material";
@@ -20,7 +19,7 @@ import {
   AttachMoney as AttachMoneyIcon,
   Analytics as AnalyticsIcon,
 } from "@mui/icons-material";
-import "./Sidebar.css";
+
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -39,33 +38,22 @@ export default function Sidebar() {
 
   return (
     <div>
-      <IconButton
-        color="inherit"
-        edge="start"
-        onClick={toggleDrawer}
-        sx={{ margin: 1, position: "fixed", top: 8, left: 8, zIndex: 1300 }}
-      >
-        <MenuIcon sx={{color: "#ffffffff", }}/>
+      <IconButton color="inherit" edge="start" onClick={toggleDrawer} sx={{ margin: 1, position: "fixed", top: 8, left: 8, zIndex: 1300 }}>
+        <MenuIcon sx={{ color: "#fff", fontSize: 30, filter: "drop-shadow(0 0 1px #ffffff)", }} />
       </IconButton>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer}>
         <Box sx={{ width: 250, bgcolor: "transparent" }} role="presentation" onClick={toggleDrawer} onKeyDown={toggleDrawer}>
-          <Box sx={{ display: "flex", alignItems: "center", padding: "16px", gap: "10px"  }}>
-            <AnalyticsIcon fontSize="large" sx={{ color: "#ffffff" }} />
-            <Typography variant="h6" sx={{ color: "#ffffff", fontWeight: 500 }}>
-              Dashboard Analytics
-            </Typography>
-          </Box>
 
 
-          <List>
+          <List sx={{ mt: 10 }}>
             {menuItems.map((item) => (
               <ListItem
                 button
                 key={item.text}
                 component={Link}
                 to={item.path}
-      
+
                 selected={window.location.pathname === item.path}
               >
                 <ListItemIcon sx={{ color: "#000000ff", minWidth: "40px" }}>{item.icon}</ListItemIcon>

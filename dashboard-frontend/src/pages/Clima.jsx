@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getClima } from "../services/climaService";
+import SearchInput from "../components/common/SearchInput";
 import {
   Box,
   Card,
   CardContent,
   Typography,
-  TextField,
-  Button,
   CircularProgress,
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,32 +54,10 @@ export default function Clima() {
 
       <Title title="Clima Actual" icon={faCloudSun} />
 
-      {/* ====== FORMULARIO DE BÚSQUEDA ====== */}
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display: "flex",
-          gap: 2,
-          mb: 4,
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        <TextField
-          label="Ciudad"
-          variant="outlined"
-          value={ciudad}
-          onChange={(e) => setCiudad(e.target.value)}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
-        >
-          Buscar
-        </Button>
+      <Box component="form" onSubmit={handleSubmit}
+        sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap", justifyContent: "center", }}  >
+        <SearchInput label="Ciudad" value={ciudad}
+          onChange={setCiudad} onSearch={() => fetchClima(ciudad)} />
       </Box>
 
       {/* ====== CONTENIDO ====== */}

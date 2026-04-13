@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { getCripto } from "../services/criptoService";
 import Card from "../components/UI/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faCoins } from "@fortawesome/free-solid-svg-icons";
+import { faCoins } from "@fortawesome/free-solid-svg-icons";
 
 import Title from "../components/common/Title";
-
+import SearchInput from "../components/common/SearchInput";
 
 import {
   Box,
-
+  Typography,
 } from "@mui/material";
 
 export default function Cripto() {
-  const [monedaInput, setMonedaInput] = useState(""); // input del usuario
-  const [vsInput, setVsInput] = useState(""); // moneda de referencia input
-  const [moneda, setMoneda] = useState(""); // moneda a consultar
-  const [vs, setVs] = useState(""); // moneda de referencia
+  const [monedaInput, setMonedaInput] = useState("");
+  const [vsInput, setVsInput] = useState("");
+  const [moneda, setMoneda] = useState("");
+  const [vs, setVs] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -41,6 +41,7 @@ export default function Cripto() {
 
   const handleSearch = () => {
     if (!monedaInput || !vsInput) return;
+
     setMoneda(monedaInput.toLowerCase());
     setVs(vsInput.toLowerCase());
   };
@@ -49,47 +50,31 @@ export default function Cripto() {
     <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
       <Title title="Criptomonedas" icon={faCoins} />
 
-      {/* Inputs de búsqueda */}
-      <div style={{ display: "flex", gap: "10px", margin: "10px 0", flexWrap: "wrap" }}>
-        <input
-          value={monedaInput}
-          onChange={(e) => setMonedaInput(e.target.value)}
-          placeholder="Ej: bitcoin"
-          style={{ flex: 1, padding: "8px 12px", borderRadius: "5px", border: "1px solid #ccc" }}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        />
-        <input
-          value={vsInput}
-          onChange={(e) => setVsInput(e.target.value)}
-          placeholder="Ej: usd, pen"
-          style={{ flex: 1, padding: "8px 12px", borderRadius: "5px", border: "1px solid #ccc" }}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        />
-        <button
-          onClick={handleSearch}
-          style={{
-            padding: "8px 12px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "#3aafa9",
-            color: "#fff",
-            cursor: "pointer",
-          }}
-        >
-          <FontAwesomeIcon icon={faSearch} /> Buscar
-        </button>
+      <div className="row my-2">
+        <div className="col-12 col-md-6">
+          <SearchInput label="Criptomoneda (bitcoin)" value={monedaInput}
+            onChange={setMonedaInput} onSearch={handleSearch} />
+        </div>
+        <div className="col-12 col-md-6 mt-3 mt-md-0">
+          <SearchInput label="Moneda (usd, pen)" value={vsInput}
+            onChange={setVsInput} onSearch={handleSearch} />
+        </div>
       </div>
 
-      {/* Resultados */}
-      {loading && <p>Cargando...</p>}
 
+      {/* ⏳ Loading */}
+      {loading && (
+        <Typography sx={{ mt: 2 }}>Cargando...</Typography>
+      )}
+
+      {/* 📊 Resultados */}
       {data.length > 0 && (
-        <div
-          style={{
+        <Box
+          sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "10px",
-            marginTop: "20px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 2,
+            mt: 3,
           }}
         >
           {data.map((item) => (
@@ -101,7 +86,7 @@ export default function Cripto() {
               icon={<FontAwesomeIcon icon={faCoins} />}
             />
           ))}
-        </div>
+        </Box>
       )}
     </Box>
   );
